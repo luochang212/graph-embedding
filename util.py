@@ -376,11 +376,11 @@ def train(model, optimizer, data, num_epoch):
     return model, train_loss_list, val_loss_list
 
 
-def plot_loss(train_loss, val_loss):
+def plot_loss(train_loss, val_loss, title):
     plt.plot(train_loss, label='train loss')
     plt.plot(val_loss, label='val loss')
     plt.xlabel('epoch')
     plt.ylabel('loss')
-    plt.title('GCN Model Loss')
+    plt.title(title)
     plt.legend()
     plt.show()
