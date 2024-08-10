@@ -19,10 +19,12 @@ def gen_abspath(directory: str, rel_path: str) -> str:
 
 class Animator:
     """在动画中绘制数据"""
+
     def __init__(self, xlabel=None, ylabel=None, legend=None, xlim=None,
                  ylim=None, xscale='linear', yscale='linear',
                  fmts=('-', 'm--', 'g-.', 'r:'), nrows=1, ncols=1,
                  figsize=(3.5, 2.5)):
+
         # 增量地绘制多条线
         if legend is None:
             legend = []
@@ -30,6 +32,7 @@ class Animator:
         self.fig, self.axes = plt.subplots(nrows, ncols, figsize=figsize)
         if nrows * ncols == 1:
             self.axes = [self.axes, ]
+
         # 使用lambda函数捕获参数
         self.config_axes = lambda: self.set_axes(
             self.axes[0], xlabel, ylabel, xlim, ylim, xscale, yscale, legend)
@@ -80,6 +83,7 @@ class Animator:
 
 class Accumulator:
     """在n个变量上累加"""
+
     def __init__(self, n):
         self.data = [0.0] * n
 
@@ -97,6 +101,7 @@ class MeanAggregator(nn.Module):
     """
     Aggregates a node's embeddings using mean of neighbors' embeddings
     """
+
     def __init__(self, features, cuda=False, gcn=False): 
         """
         Initializes the aggregator for a specific graph.
@@ -118,6 +123,7 @@ class MeanAggregator(nn.Module):
         :param to_neighs: list of sets, each set is the set of neighbors for node in batch
         :param num_sample: number of neighbors to sample. No sampling if None.
         """
+
         # Local pointers to functions (speed hack)
         _set = set
         if not num_sample is None:
@@ -173,6 +179,7 @@ class Encoder(nn.Module):
     """
     Encodes a node's using 'convolutional' GraphSage approach
     """
+
     def __init__(self, features, feature_dim, embed_dim,
                  adj_lists, aggregator, num_sample=10,
                  gcn=False, cuda=False):
@@ -277,6 +284,7 @@ def load_cora(edge_path, feat_path):
     :return noi_to_label: 节点下标到节点标签的字典
     :return label_map: 节点标签值到节点标签的字典
     """
+
     # noi: node_index
     node_to_noi = dict()
     noi_to_feat = dict()
